@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 
 
 public class MainActivity extends AppCompatActivity {
@@ -17,6 +18,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private Button signin;
+    private EditText username;
 
     @Override
     protected void onStart() {
@@ -41,13 +43,15 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         Log.d("==>","MainActivity created.");
-
+        username = findViewById(R.id.sign_in_name);
         signin = findViewById(R.id.signinbutton);
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.d("==>","Sign in button pressed.");
+                Log.d("==>","Username:"+username.getText().toString());
                 Intent intent= new Intent(MainActivity.this, ProfileActivity.class);
+                intent.putExtra("username",username.getText().toString());
                 startActivity(intent);
 
             }
